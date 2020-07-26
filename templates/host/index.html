@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页：服务器信息查看应用</title>
+    {# 导入bootstrapcss样式 #}
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+	<div class="container-fluid">
+    <div class="navbar-header">
+        {#  超链接  #}
+        <a class="navbar-brand" href="#">Sysinfo</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">主机信息监控</a></li>
+            <li><a href="/disk/">磁盘分区监控</a></li>
+            <li><a href="/users/">登录用户信息监控</a></li>
+
+        </ul>
+    </div>
+	</div>
+</nav>
+<div class="container">
+<h1>系统信息监控</h1>
+
+<table class="table table-striped">
+    <tr>
+        <td>主机名</td>
+        <td>{{ info.node }}</td>
+    </tr>
+    <tr>
+        <td>操作系统</td>
+        <td>{{ info.system }}</td>
+    </tr>
+    <tr>
+        <td>内核名称</td>
+        <td>{{ info.kernel_name }}</td>
+    </tr>
+    <tr>
+        <td>发行版本号</td>
+        <td>{{ info.release }}</td>
+    </tr>
+    <tr>
+        <td>内核版本</td>
+        <td>{{ info.version }}</td>
+    </tr>
+    <tr>
+        <td>系统架构</td>
+        <td>{{ info.machine }}</td>
+    </tr>
+    <tr>
+        <td>当前时间</td>
+        <td>{{ info.now_time }}</td>
+    </tr>
+    <tr>
+        <td>开机时间</td>
+        <td>{{ info.boot_time }}</td>
+    </tr>
+    <tr>
+        <td>开机时长</td>
+        <td>{{ info.boot_delta }}</td>
+    </tr>
+</table>
+</div>
+
+
+
+
+</body>
+</html>
