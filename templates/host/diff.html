@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登录用户监控信息</title>
-    {# 导入bootstrapcss样式 #}
+    <title>磁盘监控信息</title>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,40 +16,24 @@
     </div>
     <div>
         <ul class="nav navbar-nav">
-            <li ><a href="#">主机信息监控</a></li>
-            <li ><a href="/disk/">磁盘分区监控</a></li>
-            <li class="active"><a href="/users/">登录用户信息监控</a></li>
+            <li ><a href="templates/host/index.html">主机信息监控</a></li>
+            <li class="active"><a href="/disk/">磁盘分区监控</a></li>
+            <li><a href="/users/">登录用户信息监控</a></li>
             <li><a href="/diff/">配置文件差异性对比</a></li>
 
         </ul>
     </div>
 	</div>
 </nav>
+<
 <div class="container">
-{# Django中好用的功能：过滤器 #}
-<h1>登录用户信息监控-登陆的用户数量：{{ users | length }}</h1>
+<h1>配置文件差异性对比</h1>
 
-<table class="table table-striped">
-    <tr>
-        <td>登陆的用户名</td>
-        <td>登陆的主机</td>
-        <td>登陆的时间</td>
-
-
-    </tr>
-    {% for user in users %}
-    <tr>
-
-        <td>{{ user.name }}</td>
-        <td>{{ user.host }}</td>
-        <td>{{ user.started  }}</td>
-
-
-    </tr>
-    {% endfor %}
-
-
-</table>
+<form action="#">
+    第一个文件上传:<input type="file" name="filename1"><br/>
+    第二个文件上传:<input type="file" name="filename2"><br/>
+    <input type="submit" value="上传">
+</form>
 </div>
 
 </body>

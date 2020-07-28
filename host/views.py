@@ -12,7 +12,7 @@ import psutil
 
 
 # Create your views here.
-#需求：用户访问http://127.0.0.1：8080，返回主机的详情信息
+#需求1：用户访问http://127.0.0.1：8080，返回主机的详情信息
 def index(request):
     try:
         # 如果是Linux系统,执行下面内容
@@ -61,7 +61,7 @@ def index(request):
     }
 ##默认情况下，返回的是普通字符串，不美观，需要模板
     return render(request,'host/index.html',{'info':info})
-##需求二：用户访问http://ip/disk/,返回磁盘分区的详细信息
+##需求2：用户访问http://ip/disk/,返回磁盘分区的详细信息
 def disk(request):
 
     ##获取系统的所有详情信息
@@ -84,7 +84,7 @@ def disk(request):
 
     return render(request,'host/disk.html',{'disks':disks})
 
-##用户访问http://ip/users/,返回用户信息
+##需求3：用户访问http://ip/users/,返回用户信息
 def users(request):
     all_users=[]
     users=psutil.users()
@@ -97,3 +97,7 @@ def users(request):
         }
         all_users.append(one_user)
     return render(request,'host/users.html',{'users':all_users})
+
+##需求三：用户访问http://ip/diff/,返回html页面，可以让用户上传文件
+def diff(request):
+    return render(request,'host/diff.html')
