@@ -1,3 +1,5 @@
+import difflib
+
 import prettytable
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -11,8 +13,12 @@ import psutil
 
 
 
+
 # Create your views here.
 #需求1：用户访问http://127.0.0.1：8080，返回主机的详情信息
+from host.tools import get_md5
+
+
 def index(request):
     try:
         # 如果是Linux系统,执行下面内容
@@ -103,10 +109,23 @@ def diff(request):
     ##GET方法，一般获取HTML页面内容
     ##POST方法 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）
     if request.method == 'POST':
+        ##获取用户上传的文件
         files=request.FILES
-        filename1= files.get('filename1')
-        filename2= files.get('filename2')
+        #获取第一个和第二个文件，通过read读取文件的内容
+        content1= files.get('filename1').read()
+        content2= files.get('filename2').read()
 
+        ##对于文件差异性对比
+        # 判断MD5加密是否相同，如果相同，则文件一致，否则，显示差异性对比
+        if get_md5(content1) == get_md5(content2):
+            return HttpResponse("文件内容一致")
+        else:
+            hdiff = difflib.HtmlDiff()
+            content1 = content1.decode('utf-8').splitlines()
+            content2 = content2.decode('utf-8').splitlines()
+
+            result = hdiff.make_file(content1,content2) #生成一个HTML文件
+            return HttpResponse(result)
         return HttpResponse("这是一个POST请求")
 
     return render(request,'host/diff.html')
