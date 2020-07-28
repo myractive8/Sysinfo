@@ -16,7 +16,7 @@
     </div>
     <div>
         <ul class="nav navbar-nav">
-            <li ><a href="templates/host/index.html">主机信息监控</a></li>
+            <li ><a href="#">主机信息监控</a></li>
             <li class="active"><a href="/disk/">磁盘分区监控</a></li>
             <li><a href="/users/">登录用户信息监控</a></li>
             <li><a href="/diff/">配置文件差异性对比</a></li>
@@ -25,16 +25,38 @@
     </div>
 	</div>
 </nav>
-<
-<div class="container">
-<h1>配置文件差异性对比</h1>
 
-<form action="#">
-    第一个文件上传:<input type="file" name="filename1"><br/>
-    第二个文件上传:<input type="file" name="filename2"><br/>
-    <input type="submit" value="上传">
-</form>
+<div class="container">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1>配置文件差异性对比</h1>
+            {# form表单，提交的方式：Post,提交给 /diff/路由处理 #}
+            {# 上传文件一定要设置 enctype="multipart/form-data"#}
+            <form role="form" action="/diff/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputfile">第一个配置文件：</label>
+                    <input type="file" id="inputfile" name="filename1">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputfile">第二个配置文件：</label>
+                    <input type="file" id="inputfile" name="filename2">
+                </div>
+
+                <button type="submit" class="btn btn-default">上传文件</button>
+                </form>
+
+        </div>
+
+    </div>
+
+</div>
+
 </div>
 
 </body>
 </html>
+

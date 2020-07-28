@@ -100,4 +100,13 @@ def users(request):
 
 ##需求三：用户访问http://ip/diff/,返回html页面，可以让用户上传文件
 def diff(request):
+    ##GET方法，一般获取HTML页面内容
+    ##POST方法 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）
+    if request.method == 'POST':
+        files=request.FILES
+        filename1= files.get('filename1')
+        filename2= files.get('filename2')
+
+        return HttpResponse("这是一个POST请求")
+
     return render(request,'host/diff.html')
